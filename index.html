@@ -1,5 +1,8 @@
 <html>
 <head>
+<meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
 <style>
@@ -9,7 +12,10 @@
 </head>
 
 <body>
-  <div id='map'></div>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+<div id='map'></div>
+
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRyaWFuNzA1IiwiYSI6ImNqMHE4Yng2MDAxZW0ycWp3ZjVnZ2R0aG0ifQ.ro-qjebdqH2K_plc_t4VEg';
 var map = new mapboxgl.Map({
@@ -18,6 +24,11 @@ style: 'mapbox://styles/adrian705/cj0qb1c20006n2smypjtlj7lw',
 center: [144.9751608, -37.8274812],
 zoom: '12'
 });
+map.addControl(new MapboxDirections({
+    accessToken: mapboxgl.accessToken,
+    unit: 'metric',
+    profile: 'walking'
+}), 'top-left');
 
 map.on('click', function (e) {
     // Use queryRenderedFeatures to get features at a click event's point
